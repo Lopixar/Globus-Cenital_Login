@@ -1,0 +1,66 @@
+
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Globo cenital</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<canvas id="canvas" width="800" height="800"></canvas>
+
+<div id="overlay">
+
+  <!-- MENÚ PRINCIPAL -->
+  <div id="menuBox">
+    <b>Globo cenital</b>
+    <span id="meName"></span>
+    <button id="showJoinBtn">Entrar a una sala</button>
+    <button id="showRankingBtn">Leaderboard global</button>
+    <button class="accountBtn">Volver a mi cuenta</button>
+  </div>
+
+  <!-- ENTRAR EN UNA SALA -->
+  <div id="joinBox" class="hidden">
+    <b>Entrar a una sala</b>
+    <input id="roomInput" placeholder="Código de sala"
+           maxlength="12" value="sala1">
+    <button id="joinBtn">Entrar</button>
+    <button id="joinBackBtn">Volver</button>
+    <button class="accountBtn">Volver a mi cuenta</button>
+  </div>
+
+  <!-- LEADERBOARD -->
+  <div id="rankingBox" class="hidden">
+    <b>Leaderboard global</b>
+    <ul id="rankingList">
+      <li>Cargando...</li>
+    </ul>
+    <button id="rankingBackBtn">Volver</button>
+  </div>
+
+  <!-- SALA DE ESPERA -->
+  <div id="lobbyBox" class="hidden">
+    <b id="roomTitle"></b>
+    <span id="lobbyInfo"></span>
+    <button id="startBtn">Empezar partida</button>
+    <button class="leaveBtn">Salir de la sala</button>
+  </div>
+
+</div>
+
+<!-- MENÚ DURANTE LA PARTIDA (botón arriba a la derecha o tecla Esc) -->
+<button id="menuToggleBtn" class="hidden">☰ Menú</button>
+<div id="pauseOverlay" class="hidden">
+  <div>
+    <b>Menú</b>
+    <button id="resumeBtn">Seguir jugando</button>
+    <button class="leaveBtn">Salir de la sala</button>
+  </div>
+</div>
+
+<script src="/js/client.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ca" color-mode="user">
+
+<head>
+    <meta charset="utf-8">
+    <title>{SITE_NAME} :: Eliminar compte</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Antonio Bueno (UdG)">
+    <link rel="icon" href="/favicon.png">
+    <link rel="stylesheet" href="mvp.css">
+    <link rel="stylesheet" href="el_meu.css">
+    <script defer src="el_meu.js"></script>
+</head>
+
+<body>
+    <main>
+        <header>
+            <h1><a href="/">{SITE_NAME}</a></h1>
+            <div>{FEEDBACK}</div>
+        </header>
+        <section>
+            <form method="{METHOD}" action="/?page=delete_account">
+                <header>
+                    <h2>Eliminar el compte</h2>
+                </header>
+                <p><mark>Aquesta acció no es pot desfer.</mark> Totes les teves dades s'eliminaran.</p>
+                <label for="user_password">Confirma la teva contrasenya</label>
+                <input id="user_password" type="password" name="user_password" required />
+                <input type="submit" name="delete_account" value="Eliminar el compte definitivament" />
+            </form>
+        </section>
+        <section>
+            <div>
+                <a href="/">Cancel·lar i tornar a l'inici</a>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

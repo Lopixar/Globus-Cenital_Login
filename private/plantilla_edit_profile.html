@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ca" color-mode="user">
+
+<head>
+    <meta charset="utf-8">
+    <title>{SITE_NAME} :: Editar perfil</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Antonio Bueno (UdG)">
+    <link rel="icon" href="/favicon.png">
+    <link rel="stylesheet" href="mvp.css">
+    <link rel="stylesheet" href="el_meu.css">
+    <script defer src="el_meu.js"></script>
+</head>
+
+<body>
+    <main>
+        <header>
+            <h1><a href="/">{SITE_NAME}</a></h1>
+            <div>{FEEDBACK}</div>
+        </header>
+        <section>
+            <form method="{METHOD}" action="/?page=edit_profile">
+                <header>
+                    <h2>Editar el perfil</h2>
+                </header>
+                <label for="display_name">Nom a mostrar</label>
+                <input id="display_name" type="text" name="display_name" value="{PROFILE_DISPLAY_NAME}" maxlength="127" />
+                <input type="submit" name="edit_profile" value="Desar canvis" />
+            </form>
+        </section>
+        <section>
+            <div>
+                <a href="/">Tornar a l'inici</a>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

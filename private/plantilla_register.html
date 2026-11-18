@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ca" color-mode="user">
+
+<head>
+    <meta charset="utf-8">
+    <title>{SITE_NAME} :: Registre nou usuari</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Antonio Bueno (UdG)">
+
+    <link rel="icon" href="/favicon.png">
+    <link rel="stylesheet" href="mvp.css">
+    <link rel="stylesheet" href="el_meu.css">
+
+    <script defer src="el_meu.js"></script>
+</head>
+
+<body>
+    <main>
+
+        <header>
+            <h1><a href="/">{SITE_NAME}</a></h1>
+            <div>{FEEDBACK}</div>
+        </header>
+
+        <section>
+
+            <form method="{METHOD}" action="{REGISTER_URL}">
+
+                <header>
+                    <h2>Crea un nou compte</h2>
+                </header>
+
+                <label for="register_username">
+                    Nom d'usuari
+                </label>
+
+                <input
+                    id="register_username"
+                    type="text"
+                    name="user_name"
+                    value="{REGISTER_USERNAME}"
+                    required
+                />
+
+                <label for="register_email">
+                    Correu electrònic
+                </label>
+
+                <input
+                    id="register_email"
+                    type="email"
+                    name="email"
+                    value="{REGISTER_EMAIL}"
+                    required
+                />
+
+                <label for="register_password">
+                    Contrasenya
+                </label>
+
+                <input
+                    id="register_password"
+                    type="password"
+                    name="user_password"
+                    required
+                />
+
+                <label for="register_question">
+                    Pregunta de seguretat
+                </label>
+
+                <input
+                    id="register_question"
+                    type="text"
+                    name="security_question"
+                    value="{REGISTER_QUESTION}"
+                    required
+                />
+
+                <label for="register_answer">
+                    Resposta de seguretat
+                </label>
+
+                <input
+                    id="register_answer"
+                    type="text"
+                    name="security_answer"
+                    required
+                />
+
+                <input
+                    type="submit"
+                    name="register"
+                    value="Crear compte"
+                />
+
+            </form>
+
+        </section>
+
+        <section>
+            <div>
+                <a href="{LOGIN_LOGOUT_URL}">
+                    {LOGIN_LOGOUT_TEXT}
+                </a>
+            </div>
+        </section>
+
+    </main>
+</body>
+
+</html>

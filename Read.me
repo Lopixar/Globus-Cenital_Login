@@ -1,0 +1,75 @@
+Funcionament del codi:
+
+Errors arreglats (feina Martí Ferrer):
+
+1- Sistema de hash unidireccional per les contrassenyes, es guarden amb el hash i es comproven quan inicies sessió
+2- Substituit el get per el post durant login i registre.
+3- Corregit error de inici de sessio post registre, abans no quedava ben registrada
+4- Session set cookie params al principi, perque la cookie de la sessio sigui segura.
+5- Quan conectem amb la bd, posem un try catch per si dones error capturar-lo i evitar que es mostri, mostrant un missatge de error seguint estil de la web
+6- Posem que no es pugui registrar un usuari ja existent, o amb parametres buits.
+
+
+Canvis de disseny
+
+(Martí)
+
+1- Contrassenya amb requisits minims de tamany, numero i minim una majuscula.
+
+(Luis Capitano)
+
+2- Nou CSS amb nova estètica
+3- Pregunta adicional per al 2FA o per recuperar contrassenya.
+4- Funció eliminar conta
+5- Funció canviar Contrassenya
+6- Funció Recuperar Contrassenya
+
+
+(Carlos Pendino)
+
+7- Sistema de correu per registrar-te (codi de verificació s'envia al mail).
+	7.1 Es demana correu durant el registre
+	7.2 Es Crea un codi de 6 digits que dura 15 min
+	7.3 S'usa l'api de brevo per enviar-lo
+	7.4 Si usuari encerta, es registra (Max 5 intents, pot clicar reenviar codi si no li arriba correctement)
+
+Notes sobre el codi, modificacions a la carpeta PHP, per tal de que funcioni el sitema de missatges amb Brevo: 
+
+	php.ini 
+	(activar extensions: curl, openssl) 
+	(configurar curl.cainfo i openssl.cafile perque apuntin al fitxer cacert.pem que es troba a PHP/extras/ssl/openssl.cnf, 
+	aixo es necessari perque PHP pugui verificar el certificat HTTPS de api.brevo.com)
+
+--------------------------------------------------------------------
+INTEGRACIO AMB EL JOC "GLOBO CENITAL" (carpeta joc/)
+--------------------------------------------------------------------
+
+Estructura:
+  PHP/, private/, public/   -> sistema de login (com abans, sense canviar rutes)
+  joc/                      -> joc multijugador en Node (server.js, private/, public/)
+  start_all.cmd             -> arrenca els dos servidors alhora
+
+Com arrencar:
+  1. Executa start_all.cmd (o start_devserver.cmd a private/ + "node server.js" a joc/).
+  2. Obre http://localhost:8000, inicia sessio i clica "Jugar al Globo cenital".
+
+Com es connecten (canvis minims):
+  - index.php: nova ruta /?page=play (exigeix sessio) que redirigeix al joc amb un
+    token de 60 s signat (HMAC) que conte el nom d'usuari. Nou enllac a la pagina d'inici.
+  - joc/private/auth.js (nou): verifica el token i crea la cookie "auth" signada.
+  - joc/server.js: sense cookie "auth" valida redirigeix al login (o 401 a l'API).
+    El nom del jugador es sempre el nom d'usuari del login; el que enviï el client s'ignora.
+  - El ranking es guarda per usuari (clau "u_<usuari>"), no per navegador.
+  - private/game_secret.txt: secret compartit PHP <-> Node. Es crea sol; no el pugis a git.
+
+Notes:
+  - Un mateix compte nomes pot ser un jugador. Per provar-ho amb 2 jugadors calen 2 comptes
+    (en navegadors/perfils diferents).
+  - Tancar sessio al login NO tanca la sessio del joc (la cookie "auth" dura fins que es tanca el navegador).
+  - Ports: login 8000 (a index.php: $game_url), joc 3000 (variable PORT; ACCOUNT_URL / LOGIN_URL a joc/private/config.js).
+
+Menus del joc:
+  - Jugant: boto "Menu" (dalt a la dreta) o tecla Esc -> "Seguir jugant" / "Sortir de la sala".
+  - Sala d'espera: boto "Salir de la sala".
+  - Menu principal i selector de sales: boto "Volver a mi cuenta" (torna al menu del compte PHP).
+  - Si surts d'una partida en curs, es compta com abandonar (els altres continuen / guanya l'ultim).

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ca" color-mode="user">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>{SITE_NAME} :: Verificació del correu</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+
+    <link rel="icon" href="/favicon.png">
+    <link rel="stylesheet" href="mvp.css">
+    <link rel="stylesheet" href="el_meu.css">
+
+    <script defer src="el_meu.js"></script>
+</head>
+
+<body>
+
+    <main>
+
+        <header>
+
+            <h1>
+                <a href="/">{SITE_NAME}</a>
+            </h1>
+
+            <div>{FEEDBACK}</div>
+
+        </header>
+
+        <section>
+
+            <form method="POST" action="/?page=verify_email">
+
+                <header>
+                    <h2>Verifica el teu correu electrònic</h2>
+                </header>
+
+                <p>
+                    Hem enviat un codi de verificació al teu correu.
+                </p>
+
+                <label for="verification_code">
+                    Codi de verificació
+                </label>
+
+                <input
+                    id="verification_code"
+                    type="text"
+                    name="verification_code"
+                    maxlength="6"
+                    inputmode="numeric"
+                    autocomplete="one-time-code"
+                    required
+                />
+
+                <input
+                    type="submit"
+                    name="verify_email"
+                    value="Verificar correu"
+                />
+
+            </form>
+
+        </section>
+
+        <section>
+
+            <form method="POST" action="/?page=verify_email">
+                <p>No t'ha arribat el correu? Mira també la carpeta de correu brossa.</p>
+                <input
+                    type="submit"
+                    name="resend_code"
+                    value="Reenviar el codi"
+                />
+            </form>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
